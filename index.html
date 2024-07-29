@@ -75,7 +75,8 @@
 
     function updateChart(event) {
       let filteredData = [];
-      const lastYear = date.getFullYear() - 1;
+      const now = new Date();
+      const lastYear = now.getFullYear() - 1;
       switch (event) {
         case 'event1':
           filteredData = data.filter(d => d.date <= new Date(lastYear, 11, 18));
