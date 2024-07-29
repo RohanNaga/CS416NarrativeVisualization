@@ -32,7 +32,7 @@
   <h1>S&P 500 Price Visualization 2023-2024</h1>
 
   <div class="buttons">
-    <p>Select the time period you want to view.</p>
+    <p>Select the time period you want to view below:</p>
     <button onclick="updateChart('event1')">Period 1</button>
     <button onclick="updateChart('event2')">Period 2</button>
     <button onclick="updateChart('event3')">Period 3</button>
@@ -159,15 +159,20 @@
             // Show annotation on circle click
         circles.on("click", function(event, d) {
             // Hide all annotations
-            d3.selectAll(".annotation").style("display", "none");
-            d3.select(this).style("fill","red");
-            
-            // Show the clicked circle's annotation
-            d3.select(this.annotations)
-              .style("display", "block");
-            console.log(this);
+            if (d3.select(this).style("fill") == "blue") {
+                d3.selectAll(".annotation").style("display", "none");
+                d3.select(this).style("fill","red");
+                
+                // Show the clicked circle's annotation
+                d3.select(this.annotations)
+                .style("display", "block");
+                console.log(this);
+            } else {
+                d3.selectAll(".annotation").style("display", "none");
+                d3.selectAll("circle").style("fill", "blue");
+            }
         });
-
+/*
         // Hide annotations when clicking outside
         svg.on("click", function(event) {
             if (!d3.select(event.target).classed("circle")) {
@@ -175,6 +180,7 @@
                 d3.selectAll("circle").style("fill", "blue"); // Reset circle color
             }
         });
+        */
     }
   </script>
 </body>
