@@ -139,7 +139,7 @@
         .enter()
         .append("text")
         .attr("x", d => d.x)
-        .attr("y", d => d.y - 10)  // Position the text above the circle
+        .attr("y", d => (d.y - 10))  // Position the text above the circle
         .attr("text-anchor", "middle")
         .text(d => d.label)
         .attr("class", "annotation")
@@ -150,7 +150,7 @@
             d3.selectAll(".annotation").style("display", "none");
             console.log(this)
             // Show the clicked circle's annotation
-            d3.select(`#${d.id}`)
+            d3.select(this.id)
               .style("display", "block");
         });
 
