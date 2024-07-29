@@ -53,17 +53,13 @@
     g.append('g')
       .attr('class', 'axis axis--y');
 
-    let data = {};
+    let data = [];
 
     d3.csv('https://raw.githubusercontent.com/RohanNaga/CS416NarrativeVisualization/fbf790863f24977cc3cbb6b6fbdc61f26a888f1b/Download%20Data%20-%20INDEX_US_S%26P%20US_SPX%20(1).csv').then(csvData => {
       csvData.forEach(d => {
         d.date = new Date(d.date);  // Adjust date parsing as necessary
         d.value = +d.value;
-
-        if (!data[d.event]) {
-          data[d.event] = [];
-        }
-        data[d.event].push(d);
+        data.push(d);
       });
 
       // Initial load
@@ -71,17 +67,29 @@
     });
 
     function updateChart(event) {
-      const dataSet = data[event];
-      if (!dataSet) return;
+      let filteredData = [];
+      switch (event) {
+        case 'event1':
+          filteredData = data.filter(d => d.date <= new Date(d.date.getFullYear(), 3, 30));
+          break;
+        case 'event2':
+          filteredData = data.filter(d => d.date <= new Date(d.date.getFullYear(), 7, 31));
+          break;
+        case 'event3':
+          filteredData = data;
+          break;
+        default:
+          filteredData = data;
+      }
 
-      x.domain(d3.extent(dataSet, d => d.date));
-      y.domain([0, d3.max(dataSet, d => d.value)]);
+      x.domain(d3.extent(filteredData, d => d.date));
+      y.domain([0, d3.max(filteredData, d => d.value)]);
 
       g.select('.axis--x').call(xAxis);
       g.select('.axis--y').call(yAxis);
 
       const path = g.selectAll('.line')
-        .data([dataSet]);
+        .data([filteredData]);
 
       path.enter().append('path')
         .attr('class', 'line')
