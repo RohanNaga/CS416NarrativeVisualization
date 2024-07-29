@@ -58,7 +58,7 @@
     d3.csv('https://raw.githubusercontent.com/RohanNaga/CS416NarrativeVisualization/fbf790863f24977cc3cbb6b6fbdc61f26a888f1b/Download%20Data%20-%20INDEX_US_S%26P%20US_SPX%20(1).csv').then(csvData => {
       csvData.forEach(d => {
         d.date = d3.timeParse('%m/%d/%Y')(d.Date);
-        d.open = +d.Open;
+        d.open = d.Open;
         data.push(d);
       });
 
@@ -91,13 +91,13 @@
       g.select('.axis--x').call(xAxis);
       g.select('.axis--y').call(yAxis);
 
-
+    /*
       var line = d3.line()
                     .x(function(d){return x(d.Date);})
                     .y(function(d){return x(d.Open);});
         
       g.append('path').attr('d',line(data))
-      /*
+      */
       const path = g.append('line')
         .data([filteredData]);
 
@@ -110,7 +110,7 @@
         .attr('stroke-width', 2);
 
       path.exit().remove();
-      */
+      
     }
   </script>
 </body>
