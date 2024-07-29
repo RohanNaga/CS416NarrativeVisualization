@@ -165,29 +165,23 @@
 
       annotations.exit().remove();
 
-        circles.on("click", function(event, d) {
-            // Hide all annotations
-            if (d3.select(this).style("fill") == "blue") {
-                d3.selectAll(".annotation").style("display", "none");
-                d3.select(this).style("fill","red");
-                
-                // Show the clicked circle's annotation
-                d3.select(`#${d.id}-annotation`).style("display", "block");
-                console.log(d3.selectAll(`#${d.id}-annotation`));
-            } else {
-                d3.selectAll(".annotation").style("display", "none");
-                d3.selectAll("circle").style("fill", "blue");
-            }
-        });
-/*
-        // Hide annotations when clicking outside
-        svg.on("click", function(event) {
-            if (!d3.select(event.target).classed("circle")) {
-                d3.selectAll(".annotation").style("display", "none");
-                d3.selectAll("circle").style("fill", "blue"); // Reset circle color
-            }
-        });
-        */
+      circles.on("click", function(event, d) {
+        // Hide all annotations
+        d3.selectAll(".annotation").style("display", "none");
+        d3.selectAll("circle").style("fill", "blue");
+
+        // Show the clicked circle's annotation
+        d3.select(`#${d.id}-annotation`).style("display", "block");
+        d3.select(this).style("fill", "red");
+      });
+
+      // Hide annotations when clicking outside
+      svg.on("click", function(event) {
+        if (!d3.select(event.target).classed("circle")) {
+          d3.selectAll(".annotation").style("display", "none");
+          d3.selectAll("circle").style("fill", "blue"); // Reset circle color
+        }
+      });
     }
   </script>
 </body>
