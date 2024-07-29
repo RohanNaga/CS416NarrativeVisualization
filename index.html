@@ -40,8 +40,8 @@
     const y = d3.scaleLinear().range([height, 0]);
 
     const line = d3.line()
-      .x(d => x(d.Date))
-      .y(d => y(d.Open));
+      .x(d => x(d.date))
+      .y(d => y(d.open));
 
     const xAxis = d3.axisBottom(x);
     const yAxis = d3.axisLeft(y);
@@ -57,8 +57,8 @@
 
     d3.csv('https://raw.githubusercontent.com/RohanNaga/CS416NarrativeVisualization/fbf790863f24977cc3cbb6b6fbdc61f26a888f1b/Download%20Data%20-%20INDEX_US_S%26P%20US_SPX%20(1).csv').then(csvData => {
       csvData.forEach(d => {
-        d.Date = d3.timeParse('%m/%d/%Y')(d.Date);
-        d.Open = +d.Open;
+        d.date = d3.timeParse('%m/%d/%Y')(d.Date);
+        d.open = +d.Open;
         data.push(d);
       });
 
