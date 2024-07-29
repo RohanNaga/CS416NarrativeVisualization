@@ -85,7 +85,7 @@
           break;
         case 'event2':
           filteredData1 = data.filter(d => d.date <= new Date(lastYear, 12, 20));
-          filteredData2 = data.filter(d => d.date <= new Date(date.getFullYear(), 3, 18));
+          filteredData2 = data.filter(d => d.date <= new Date(now.getFullYear(), 3, 18));
           filteredData = [filteredData1,filteredData2];
           break;
         case 'event3':
