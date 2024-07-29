@@ -118,7 +118,7 @@
       path.exit().remove();
     
       const pos = [
-            {x: 100, y: 100, label: "Point A"},
+            {x: 100, y: 100, label: "The Federal Reserve's December 13, 2023, meeting concluded with the decision to hold interest rates steady at 5.25%–5.50%. This announcement, coupled with forward guidance on future monetary policy, influenced market sentiment."},
             {x: 200, y: 200, label: "Point B"},
             {x: 300, y: 300, label: "Point C"}
         ];
@@ -141,7 +141,7 @@
               .raise() // Bring the circle to the front
               .style("fill", "red"); // Optional: change the circle's color on click
 
-            d3.select(`text:nth-child(${d3.select(this).datum().index})`)
+              d3.select(`#${d.id}`)
               .style("display", "block");
         });
 
