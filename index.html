@@ -141,6 +141,7 @@
             d3.select(this)
               .raise() // Bring the circle to the front
               .style("fill", "red") // Optional: change the circle's color on click
+              .call(this)
               .style("display", "label");
         });
 
