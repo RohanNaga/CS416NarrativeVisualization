@@ -84,7 +84,7 @@
           filteredData = data.filter(d => d.date <= new Date(lastYear, 11, 18));
           break;
         case 'event2':
-          filteredData = data.filter(d => d.date <= new Date(function(date) { return date >= startDate && date <= endDate }));
+          filteredData = data.filter(d => d.date <= new Date(lastYear, 12, 31)) + data.filter(d => d.date <= new Date(now.getFullYear(), 3, 18));
           break;
         case 'event3':
           filteredData = data;
