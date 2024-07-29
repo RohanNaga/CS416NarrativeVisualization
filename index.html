@@ -137,31 +137,31 @@
       
 
         // Update circles
-      const circles = svg.selectAll("circle")
-          .data(pos);
+        const circles = svg.selectAll("circle")
+        .data(pos);
 
       circles.enter().append("circle")
-          .merge(circles)
-          .attr("cx", d => d.x)
-          .attr("cy", d => d.y)
-          .attr("r", 5)
-          .style("fill", "blue")
-          .attr("data-id", d => d.id);
+        .merge(circles)
+        .attr("cx", d => d.x)
+        .attr("cy", d => d.y)
+        .attr("r", 5)
+        .style("fill", "blue")
+        .attr("id", d => d.id);
 
       circles.exit().remove();
 
       // Update annotations
       const annotations = svg.selectAll("text.annotation")
-          .data(pos);
+        .data(pos);
 
       annotations.enter().append("text")
-          .merge(annotations)
-          .attr("x", d => d.x)
-          .attr("y", d => d.y - 10)
-          .attr("text-anchor", "middle")
-          .text(d => d.label)
-          .attr("class", "annotation")
-          .attr("id", d => d.id);
+        .merge(annotations)
+        .attr("x", d => d.x)
+        .attr("y", d => d.y - 10)
+        .attr("text-anchor", "middle")
+        .text(d => d.label)
+        .attr("class", "annotation")
+        .attr("id", d => `${d.id}-annotation`);
 
       annotations.exit().remove();
 
