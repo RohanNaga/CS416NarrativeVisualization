@@ -29,24 +29,6 @@
   </div>
 
   <script>
-    const data = {
-      event1: [
-        { date: new Date('2022-01-01'), value: 100 },
-        { date: new Date('2022-02-01'), value: 110 },
-        { date: new Date('2022-03-01'), value: 120 }
-      ],
-      event2: [
-        { date: new Date('2022-01-01'), value: 100 },
-        { date: new Date('2022-02-01'), value: 90 },
-        { date: new Date('2022-03-01'), value: 80 }
-      ],
-      event3: [
-        { date: new Date('2022-01-01'), value: 100 },
-        { date: new Date('2022-02-01'), value: 120 },
-        { date: new Date('2022-03-01'), value: 140 }
-      ]
-    };
-
     const svg = d3.select('svg');
     const margin = { top: 20, right: 20, bottom: 30, left: 50 };
     const width = +svg.attr('width') - margin.left - margin.right;
@@ -71,8 +53,27 @@
     g.append('g')
       .attr('class', 'axis axis--y');
 
+    let data = {};
+
+    d3.csv('https://raw.githubusercontent.com/RohanNaga/CS416NarrativeVisualization/fbf790863f24977cc3cbb6b6fbdc61f26a888f1b/Download%20Data%20-%20INDEX_US_S%26P%20US_SPX%20(1).csv').then(csvData => {
+      csvData.forEach(d => {
+        d.date = new Date(d.date);  // Adjust date parsing as necessary
+        d.value = +d.value;
+
+        if (!data[d.event]) {
+          data[d.event] = [];
+        }
+        data[d.event].push(d);
+      });
+
+      // Initial load
+      updateChart('event1');
+    });
+
     function updateChart(event) {
       const dataSet = data[event];
+      if (!dataSet) return;
+
       x.domain(d3.extent(dataSet, d => d.date));
       y.domain([0, d3.max(dataSet, d => d.value)]);
 
@@ -92,9 +93,6 @@
 
       path.exit().remove();
     }
-
-    // Initial load
-    updateChart('event1');
   </script>
 </body>
 </html>
