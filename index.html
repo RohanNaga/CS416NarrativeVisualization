@@ -91,8 +91,9 @@
 
       console.log(filteredData);  // Debugging line to check filtered data
 
-      //x.domain(d3.extent(filteredData, d => d.date));
-      y.domain([3500, 7000]);
+      let xDomain = [new Date('2023-07-18'), new Date('2024-07-18')];
+      x.domain(xDomain);
+    y.domain([3500, 7000]);
       g.select('.axis--x').call(xAxis);
       g.select('.axis--y').call(yAxis);
 
