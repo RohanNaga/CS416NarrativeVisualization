@@ -120,7 +120,7 @@
       const pos = [
             {x: 100, y: 300, label: "The Federal Reserve's December 13, 2023, meeting concluded with the decision to hold interest rates steady at 5.25%–5.50%. This announcement, coupled with forward guidance on future monetary policy, caused the market to rise."},
             {x: 500, y: 200, label: "On January 4th, 2024 a U.S. ADP Job report realease which boosted market sentiment and caused the market to rise."},
-            {x: 300, y: 600, label: "The Federal Reserve signaled a pause or a potential reduction in interest rates during their May 2024 meeting which caused the market to rise."}
+            {x: 800, y: 100, label: "The Federal Reserve signaled a pause or a potential reduction in interest rates during their May 2024 meeting which caused the market to rise."}
         ];
 
         const circles = svg.selectAll("circle")
@@ -140,9 +140,7 @@
             // Show the clicked circle's annotation
             d3.select(this)
               .raise() // Bring the circle to the front
-              .style("fill", "red"); // Optional: change the circle's color on click
-
-              d3.select(this)
+              .style("fill", "red") // Optional: change the circle's color on click
               .style("display", "label");
         });
 
