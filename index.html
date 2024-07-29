@@ -161,7 +161,7 @@
         .attr("text-anchor", "middle")
         .text(d => d.label)
         .attr("class", "annotation")
-        .attr("id", d.id);
+        .attr("id", d=> d.id);
 
       annotations.exit().remove();
 
