@@ -91,36 +91,16 @@
       g.select('.axis--x').call(xAxis);
       g.select('.axis--y').call(yAxis);
 
-      var line = d3.line()
-    .x(function (d) { return x(d.date); })
-    .y(function (d) { return y(d.open); });
-
-    for (var i=0; i < lines.length; i++) {
-    svg.append("path")
-      .attr("class", "plot")
-      .datum(lines[i])
-      .attr("d", line);
-    }
-    /*
-      var line = d3.line()
-                    .x(function(d){return x(d.Date);})
-                    .y(function(d){return x(d.Open);});
-        
-      g.append('path').attr('d',line(data))
-      
-      const path = g.append('line')
+      const path = g.selectAll('.line')
         .data([filteredData]);
 
       path.enter().append('path')
         .attr('class', 'line')
         .merge(path)
-        .attr('d', line)
-        .attr('fill', 'none')
-        .attr('stroke', 'steelblue')
-        .attr('stroke-width', 2);
+        .attr('d', line);
 
       path.exit().remove();
-      */
+      
     }
   </script>
 </body>
