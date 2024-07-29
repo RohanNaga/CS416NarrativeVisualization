@@ -84,19 +84,7 @@
           filteredData = data.filter(d => d.date <= new Date(lastYear, 11, 18));
           break;
         case 'event2':
-          // Define the start and end dates of the range
-const startDate = new Date('2023-07-18');
-const endDate = new Date('2023-03-18');
-
-// Ensure that the startDate is before the endDate
-const correctStartDate = startDate < endDate ? startDate : endDate;
-const correctEndDate = startDate < endDate ? endDate : startDate;
-
-// Filter the data
-filteredData = data.filter(d => {
-  const date = new Date(d.date);
-  return date >= correctStartDate && date <= correctEndDate;
-});
+          filteredData = data.filter(d => d.date <= new Date(d.date.filter(function(date) { return date >= startDate && date <= endDate })));
           break;
         case 'event3':
           filteredData = data;
