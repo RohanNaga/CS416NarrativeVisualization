@@ -131,18 +131,27 @@
             .attr("cy", d => d.y)
             .attr("r", 5)
             .style("fill", "blue")
+            .attr("data-id", d => d.id) // Add a data attribute for the id
             .style("display", "id");
+
+        const annotations = svg.selectAll("text")
+        .data(data)
+        .enter()
+        .append("text")
+        .attr("x", d => d.x)
+        .attr("y", d => d.y - 10)  // Position the text above the circle
+        .attr("text-anchor", "middle")
+        .text(d => d.label)
+        .attr("class", "annotation")
+        .attr("id", d => d.id); // Add an id attribute
             // Show annotation on circle click
         circles.on("click", function(event, d) {
             // Hide all annotations
             d3.selectAll(".annotation").style("display", "none");
             console.log(this)
             // Show the clicked circle's annotation
-            d3.select(this)
-              .raise() // Bring the circle to the front
-              .style("fill", "red") // Optional: change the circle's color on click
-              .call(this)
-              .style("display", "label");
+            d3.select(`#${d.id}`)
+              .style("display", "block");
         });
 
         // Hide annotations when clicking outside
