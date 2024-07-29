@@ -70,7 +70,7 @@
       let filteredData = [];
       switch (event) {
         case 'event1':
-          filteredData = data.filter(d => d.date <= new Date(d.date.getFullYear(), 3, 30));
+          filteredData = data//data.filter(d => d.date <= new Date(d.date.getFullYear(), 3, 30));
           break;
         case 'event2':
           filteredData = data.filter(d => d.date <= new Date(d.date.getFullYear(), 7, 31));
