@@ -16,11 +16,6 @@
       margin: 5px;
       padding: 10px;
     }
-    .line {
-      fill: none;
-      stroke: steelblue;
-      stroke-width: 2px;
-    }
   </style>
 </head>
 <body>
@@ -61,19 +56,13 @@
     let data = [];
 
     d3.csv('https://raw.githubusercontent.com/RohanNaga/CS416NarrativeVisualization/fbf790863f24977cc3cbb6b6fbdc61f26a888f1b/Download%20Data%20-%20INDEX_US_S%26P%20US_SPX%20(1).csv').then(csvData => {
-  data = csvData.map(d => {
-    const parsedDate = d3.timeParse('%m/%d/%Y')(d.Date);
-    const parsedOpen = +d.Open;
-    return { date: parsedDate, open: parsedOpen };
-  }).filter(d => !isNaN(d.date) && !isNaN(d.open));
-
-  console.log('Parsed data:', data);  // Debugging line to check parsed data
-
-  // Initial load
-  updateChart('event1');
-}).catch(error => {
-  console.error('Error loading the CSV file:', error);
-});
+      csvData.forEach(d => {
+        const parsedDate = d3.timeParse('%m/%d/%Y')(d.Date);
+        const parsedOpen = +d.Open;
+        if (!isNaN(parsedDate) && !isNaN(parsedOpen)) {
+          data.push({ date: parsedDate, open: parsedOpen });
+        }
+      });
 
       console.log('Parsed data:', data);  // Debugging line to check parsed data
 
@@ -85,10 +74,10 @@
       let filteredData = [];
       switch (event) {
         case 'event1':
-          filteredData = data.filter(d => d.date <= new Date(data[0].date.getFullYear(), 3, 30));
+          filteredData = data.filter(d => d.date <= new Date(d.date.getFullYear(), 3, 30));
           break;
         case 'event2':
-          filteredData = data.filter(d => d.date <= new Date(data[0].date.getFullYear(), 7, 31));
+          filteredData = data.filter(d => d.date <= new Date(d.date.getFullYear(), 7, 31));
           break;
         case 'event3':
           filteredData = data;
@@ -111,7 +100,10 @@
       path.enter().append('path')
         .attr('class', 'line')
         .merge(path)
-        .attr('d', line);
+        .attr('d', line)
+        .attr('fill', 'none')
+        .attr('stroke', 'steelblue')
+        .attr('stroke-width', 2);
 
       path.exit().remove();
     }
