@@ -72,10 +72,10 @@
       let filteredData = [];
       switch (event) {
         case 'event1':
-          filteredData = data.filter(d => d.date <= new Date(d.Date.getFullYear(), 3, 30));
+          filteredData = data.filter(d => d.date <= new Date(d.date.getFullYear(), 3, 30));
           break;
         case 'event2':
-          filteredData = data.filter(d => d.date <= new Date(d.Date.getFullYear(), 7, 31));
+          filteredData = data.filter(d => d.date <= new Date(d.date.getFullYear(), 7, 31));
           break;
         case 'event3':
           filteredData = data;
@@ -86,7 +86,7 @@
 
       console.log(filteredData);  // Debugging line to check filtered data
 
-      x.domain(d3.extent(filteredData, d => d.Date));
+      x.domain(d3.extent(filteredData, d => d.date));
       y.domain([0, 7000]);
       g.select('.axis--x').call(xAxis);
       g.select('.axis--y').call(yAxis);
