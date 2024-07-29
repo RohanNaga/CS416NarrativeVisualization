@@ -91,7 +91,7 @@
       g.select('.axis--x').call(xAxis);
       g.select('.axis--y').call(yAxis);
 
-      const path = g.selectAll('.line')
+      const path = g.append('.line')
         .data([filteredData]);
 
       path.enter().append('path')
