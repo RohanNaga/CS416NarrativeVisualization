@@ -168,7 +168,7 @@
         circles.on("click", function(event, d) {
             // Hide all annotations
             if (d3.select(this).style("fill") == "blue") {
-                d3.selectALL("circle").style("fill","blue");
+                d3.selectAll("circle").style("fill","blue");
                 d3.selectAll(".annotation").style("display", "none");
                 d3.select(this).style("fill","red");
                 
