@@ -146,7 +146,7 @@
         .attr("cy", d => d.y)
         .attr("r", 5)
         .style("fill", "blue")
-        .attr("id", d => `circle-${d.id}`);
+        .attr("id", d => d.id);
 
       circles.exit().remove();
 
@@ -173,7 +173,7 @@
                 d3.select(this).style("fill","red");
                 
                 // Show the clicked circle's annotation
-                d3.select(d.id).style("display", "block");
+                d3.selectAll(".annotation").select(d.id).style("display", "block");
                 console.log(d3.select(d.id));
             } else {
                 d3.selectAll(".annotation").style("display", "none");
