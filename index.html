@@ -173,8 +173,8 @@
                 d3.select(this).style("fill","red");
                 
                 // Show the clicked circle's annotation
-                d3.selectAll(".annotation").select(d.id).style("display", "block");
-                console.log(d3.selectAll(".annotation"));
+                d3.selectAll(".annotation").style("display", "block");
+                console.log(d3.selectAll(".annotation").select("id", 1));
             } else {
                 d3.selectAll(".annotation").style("display", "none");
                 d3.selectAll("circle").style("fill", "blue");
