@@ -21,6 +21,10 @@
       stroke: steelblue;   /* Color of the line */
       stroke-width: 2;     /* Width of the line */
     }
+    .annotation {
+            font-size: 12px;
+            fill: black;
+        }
   </style>
 </head>
 <body>
@@ -86,7 +90,7 @@
         case 'event2':
           filteredData1 = data.filter(d => d.date <= new Date(lastYear, 12, 20));
           filteredData2 = data.filter(d => d.date <= new Date(now.getFullYear(), 3, 18));
-          filteredData = [filteredData1,filteredData2];
+          filteredData = filteredData1.concat(filteredData2);
           break;
         case 'event3':
           filteredData = data;
