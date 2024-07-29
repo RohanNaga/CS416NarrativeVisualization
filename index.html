@@ -147,7 +147,8 @@
             // Show annotation on circle click
         circles.on("click", function(event, d) {
             // Hide all annotations
-            d3.selectAll(".annotation").style("display", "none");
+            d3.selectAll(".annotation").style("display", "show");
+            d3.select(this).attr("fill","red");
             console.log(this)
             // Show the clicked circle's annotation
             d3.select(`#${d.id}`)
