@@ -146,7 +146,7 @@
         .attr("cy", d => d.y)
         .attr("r", 5)
         .style("fill", "blue")
-        .attr("id", d => d.id);
+        .attr("id", d => `circle-${d.id}`);
 
       circles.exit().remove();
 
