@@ -41,7 +41,7 @@
 
     const line = d3.line()
       .x(d => x(d.date))
-      .y(d => y(d.value));
+      .y(d => y(d.open));
 
     const xAxis = d3.axisBottom(x);
     const yAxis = d3.axisLeft(y);
@@ -57,8 +57,8 @@
 
     d3.csv('https://raw.githubusercontent.com/RohanNaga/CS416NarrativeVisualization/fbf790863f24977cc3cbb6b6fbdc61f26a888f1b/Download%20Data%20-%20INDEX_US_S%26P%20US_SPX%20(1).csv').then(csvData => {
       csvData.forEach(d => {
-        d.date = new Date(d.date);  // Adjust date parsing as necessary
-        d.value = +d.value;
+        d.date = new Date(d.Date);  // Adjust date parsing as necessary
+        d.open = +d.Open;
         data.push(d);
       });
 
@@ -70,7 +70,7 @@
       let filteredData = [];
       switch (event) {
         case 'event1':
-          filteredData = data//data.filter(d => d.date <= new Date(d.date.getFullYear(), 3, 30));
+          filteredData = data.filter(d => d.date <= new Date(d.date.getFullYear(), 3, 30));
           break;
         case 'event2':
           filteredData = data.filter(d => d.date <= new Date(d.date.getFullYear(), 7, 31));
@@ -83,7 +83,7 @@
       }
 
       x.domain(d3.extent(filteredData, d => d.date));
-      y.domain([0, d3.max(filteredData, d => d.value)]);
+      y.domain([0, d3.max(filteredData, d => d.open)]);
 
       g.select('.axis--x').call(xAxis);
       g.select('.axis--y').call(yAxis);
