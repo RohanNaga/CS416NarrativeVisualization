@@ -24,7 +24,7 @@
     .annotation {
             font-size: 12px;
             fill: black;
-            display: block;
+            display: none;
         }
   </style>
 </head>
@@ -164,7 +164,7 @@
           .attr("id", d => d.id);
 
       annotations.exit().remove();
-      
+
         circles.on("click", function(event, d) {
             // Hide all annotations
             if (d3.select(this).style("fill") == "blue") {
@@ -172,7 +172,7 @@
                 d3.select(this).style("fill","red");
                 
                 // Show the clicked circle's annotation
-                d3.select(`#${d.id}`)
+                d3.select(this.annotation)
               .style("display", "block");
                 console.log(`#${d.id}`);
             } else {
