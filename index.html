@@ -59,9 +59,6 @@
       csvData.forEach(d => {
         const parsedDate = d3.timeParse('%m/%d/%Y')(d.Date);
         const parsedOpen = +d.Open;
-        if (!isNaN(parsedDate) && !isNaN(parsedOpen)) {
-          data.push({ date: parsedDate, open: parsedOpen });
-        }
       });
 
       console.log('Parsed data:', data);  // Debugging line to check parsed data
