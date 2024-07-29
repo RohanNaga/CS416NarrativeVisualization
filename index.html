@@ -88,7 +88,7 @@
           filteredData = data.filter(d => d.date <= new Date(lastYear, 11, 18));
           break;
         case 'event2':
-          filteredData1 = data.filter(d => d.date <= new Date(lastYear, 12, 20));
+          filteredData1 = data.filter(d => d.date <= new Date(lastYear, 12, 31));
           filteredData2 = data.filter(d => d.date <= new Date(now.getFullYear(), 3, 18));
           filteredData = filteredData2.concat(filteredData1);
           break;
