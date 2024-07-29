@@ -105,7 +105,7 @@
         ];
           filteredData1 = data.filter(d => d.date <= new Date(lastYear, 12, 31));
           filteredData2 = data.filter(d => d.date <= new Date(now.getFullYear(), 1, 18));
-          filteredData = filteredData2.concat(filteredData1);
+          filteredData = filteredData2//filteredData2.concat(filteredData1);
           break;
         case 'event3':
         pos = [
