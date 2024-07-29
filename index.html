@@ -118,32 +118,43 @@
       path.exit().remove();
     
       const pos = [
-            {x: 100, y: 100, label: "The Federal Reserve's December 13, 2023, meeting concluded with the decision to hold interest rates steady at 5.25%–5.50%. This announcement, coupled with forward guidance on future monetary policy, influenced market sentiment."},
+            {x: 100, y: 100, label: "The Federal Reserve's December 13, 2023, meeting concluded with the decision to hold interest rates steady at 5.25%–5.50%. This announcement, coupled with forward guidance on future monetary policy, caused the market to rise."},
             {x: 200, y: 200, label: "On January 4th, 2024 a U.S. ADP Job report realease which boosted market sentiment and caused the market to rise."},
-            {x: 300, y: 300, label: "Point C"}
+            {x: 300, y: 300, label: "The Federal Reserve signaled a pause or a potential reduction in interest rates during their May 2024 meeting which caused the market to rise."}
         ];
 
         const circles = svg.selectAll("circle")
-            .data(pos)
+            .data(data)
             .enter()
             .append("circle")
             .attr("cx", d => d.x)
             .attr("cy", d => d.y)
             .attr("r", 5)
-            .style("fill", "blue");
-            // Show annotation on circle click
+            .style("fill", "blue")
+            .attr("data-id", d => d.id); // Add a data attribute for the id
+
+        // Create text annotations, initially hidden
+        const annotations = svg.selectAll("text")
+            .data(data)
+            .enter()
+            .append("text")
+            .attr("x", d => d.x)
+            .attr("y", d => d.y - 10)  // Position the text above the circle
+            .attr("text-anchor", "middle")
+            .text(d => d.label)
+            .attr("class", "annotation")
+            .attr("id", d => d.id); // Add an id attribute
+
+        // Show annotation on circle click
         circles.on("click", function(event, d) {
             // Hide all annotations
             d3.selectAll(".annotation").style("display", "none");
 
             // Show the clicked circle's annotation
-            d3.select(this)
-              .raise() // Bring the circle to the front
-              .style("fill", "red"); // Optional: change the circle's color on click
-
-              d3.select(`#${d.id}`)
-              .style("display", "label");
+            d3.select(`#${d.id}`)
+              .style("display", "block");
         });
+
 
         // Hide annotations when clicking outside
         svg.on("click", function(event) {
