@@ -17,18 +17,19 @@
       padding: 10px;
     }
     .line {
-      fill: none;
-      stroke: steelblue;
-      stroke-width: 2;
+      fill: none;           /* Ensures that the area under the line is not filled */
+      stroke: steelblue;   /* Color of the line */
+      stroke-width: 2;     /* Width of the line */
     }
     .annotation {
-      font-size: 12px;
-      fill: black;
-      display: none;
-    }
+            font-size: 12px;
+            fill: black;
+            display: none;
+        }
   </style>
 </head>
 <body>
+  <title>S&P 500 Price Visualization 2023-2024</title>
   <h1>S&P 500 Price Visualization 2023-2024</h1>
 
   <div class="buttons">
@@ -83,30 +84,32 @@
 
     function updateChart(event) {
       let filteredData = [];
-      let pos = [];
       const now = new Date();
       const lastYear = now.getFullYear() - 1;
-
+      const startDate = new Date('2023-07-18');
+      const endDate = new Date('2024-03-18');
       switch (event) {
         case 'event1':
-          pos = [
-            {id: 1, x: 100, y: 300, label: "The Federal Reserve's December 13, 2023, meeting concluded with the decision to hold interest rates steady at 5.25%–5.50%. This announcement, coupled with forward guidance on future monetary policy, caused the market to rise."},
-          ];
+        pos = [
+            {x: 100, y: 300, label: "The Federal Reserve's December 13, 2023, meeting concluded with the decision to hold interest rates steady at 5.25%–5.50%. This announcement, coupled with forward guidance on future monetary policy, caused the market to rise."},
+        ];
           filteredData = data.filter(d => d.date <= new Date(lastYear, 11, 18));
           break;
         case 'event2':
-          pos = [
-            {id: 1, x: 100, y: 300, label: "The Federal Reserve's December 13, 2023, meeting concluded with the decision to hold interest rates steady at 5.25%–5.50%. This announcement, coupled with forward guidance on future monetary policy, caused the market to rise."},
-            {id: 2, x: 500, y: 200, label: "On January 4th, 2024 a U.S. ADP Job report release which boosted market sentiment and caused the market to rise."},
-          ];
-          filteredData = data.filter(d => d.date <= new Date(lastYear, 12, 31));
+        pos = [
+            {x: 100, y: 300, label: "The Federal Reserve's December 13, 2023, meeting concluded with the decision to hold interest rates steady at 5.25%–5.50%. This announcement, coupled with forward guidance on future monetary policy, caused the market to rise."},
+            {x: 500, y: 200, label: "On January 4th, 2024 a U.S. ADP Job report realease which boosted market sentiment and caused the market to rise."},
+        ];
+          filteredData1 = data.filter(d => d.date <= new Date(lastYear, 12, 31));
+          filteredData2 = data.filter(d => d.date <= new Date(now.getFullYear(), 3, 18));
+          filteredData = filteredData2.concat(filteredData1);
           break;
         case 'event3':
-          pos = [
-            {id: 1, x: 100, y: 300, label: "The Federal Reserve's December 13, 2023, meeting concluded with the decision to hold interest rates steady at 5.25%–5.50%. This announcement, coupled with forward guidance on future monetary policy, caused the market to rise."},
-            {id: 2, x: 500, y: 200, label: "On January 4th, 2024 a U.S. ADP Job report release which boosted market sentiment and caused the market to rise."},
-            {id: 3, x: 750, y: 100, label: "The Federal Reserve signaled a pause or a potential reduction in interest rates during their May 2024 meeting which caused the market to rise."}
-          ];
+        pos = [
+            {x: 100, y: 300, label: "The Federal Reserve's December 13, 2023, meeting concluded with the decision to hold interest rates steady at 5.25%–5.50%. This announcement, coupled with forward guidance on future monetary policy, caused the market to rise."},
+            {x: 500, y: 200, label: "On January 4th, 2024 a U.S. ADP Job report realease which boosted market sentiment and caused the market to rise."},
+            {x: 750, y: 100, label: "The Federal Reserve signaled a pause or a potential reduction in interest rates during their May 2024 meeting which caused the market to rise."}
+        ];
           filteredData = data;
           break;
         default:
@@ -117,7 +120,7 @@
 
       let xDomain = [new Date('2023-07-18'), new Date('2024-07-18')];
       x.domain(xDomain);
-      y.domain([4000, 6000]);
+    y.domain([4000, 6000]);
       g.select('.axis--x').call(xAxis);
       g.select('.axis--y').call(yAxis);
 
@@ -131,8 +134,10 @@
 
       path.exit().remove();
     
-      // Update circles
-      const circles = svg.selectAll("circle")
+      
+
+        // Update circles
+        const circles = svg.selectAll("circle")
         .data(pos);
 
       circles.enter().append("circle")
@@ -156,23 +161,24 @@
         .attr("text-anchor", "middle")
         .text(d => d.label)
         .attr("class", "annotation")
-        .attr("id", d => `annotation-${d.id}`);
+        .attr("id", d => `${d.id}-annotation`);
 
       annotations.exit().remove();
 
-      circles.on("click", function(event, d) {
-        // Hide all annotations
-        d3.selectAll(".annotation").style("display", "none");
-        d3.selectAll("circle").style("fill", "blue");
-
-        // Show the clicked circle's annotation
-        if (d3.select(this).style("fill") === "blue") {
-          d3.select(this).style("fill", "red");
-          d3.select(`#annotation-${d.id}`).style("display", "block");
-        } else {
-          d3.select(this).style("fill", "blue");
-        }
-      });
+        circles.on("click", function(event, d) {
+            // Hide all annotations
+            if (d3.select(this).style("fill") == "blue") {
+                d3.selectAll(".annotation").style("display", "none");
+                d3.select(this).style("fill","red");
+                
+                // Show the clicked circle's annotation
+                d3.select(`#${d.id}-annotation`).style("display", "block");
+                console.log(d3.selectAll(`#${d.id}-annotation`));
+            } else {
+                d3.selectAll(".annotation").style("display", "none");
+                d3.selectAll("circle").style("fill", "blue");
+            }
+        });
     }
   </script>
 </body>
