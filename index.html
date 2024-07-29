@@ -139,7 +139,7 @@
         .enter()
         .append("text")
         .attr("x", d => d.x)
-        .attr("y", d => (d.y - 10))  // Position the text above the circle
+        .attr("y", d => d.y)  // Position the text above the circle
         .attr("text-anchor", "middle")
         .text(d => d.label)
         .attr("class", "annotation")
