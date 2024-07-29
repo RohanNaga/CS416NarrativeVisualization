@@ -42,7 +42,7 @@
     <button onclick="updateChart('event3');updateChart('event3')">Period 3</button>
   </div>
   <div class="chart">
-    <svg width="1500" height="400"></svg>
+    <svg width="1600" height="400"></svg>
   </div>
 
   <script>
@@ -94,14 +94,14 @@
       switch (event) {
         case 'event1':
         pos = [
-            {x: 325, y: 275, label: "The Federal Reserve's December 13, 2023, meeting concluded with the decision to hold interest rates steady at 5.25%–5.50%. This announcement, coupled with forward guidance on future monetary policy, caused the market to rise.", id:1},
+            {x: 650, y: 275, label: "The Federal Reserve's December 13, 2023, meeting concluded with the decision to hold interest rates steady at 5.25%–5.50%. This announcement, coupled with forward guidance on future monetary policy, caused the market to rise.", id:1},
         ];
           filteredData = data.filter(d => d.date <= new Date(lastYear, 11, 18));
           break;
         case 'event2':
         pos = [
-            {x: 325, y: 275, label: "The Federal Reserve's December 13, 2023, meeting concluded with the decision to hold interest rates steady at 5.25%–5.50%. This announcement, coupled with forward guidance on future monetary policy, caused the market to rise.", id:1},
-            {x: 400, y: 250, label: "On January 4th, 2024 a U.S. ADP Job report realease which boosted market sentiment and caused the market to rise.", id:2},
+            {x: 650, y: 275, label: "The Federal Reserve's December 13, 2023, meeting concluded with the decision to hold interest rates steady at 5.25%–5.50%. This announcement, coupled with forward guidance on future monetary policy, caused the market to rise.", id:1},
+            {x: 800, y: 250, label: "On January 4th, 2024 a U.S. ADP Job report realease which boosted market sentiment and caused the market to rise.", id:2},
         ];
           filteredData1 = data.filter(d => d.date <= new Date(lastYear, 12, 31));
           filteredData2 = data.filter(d => d.date <= new Date(now.getFullYear(), 3, 18));
@@ -109,9 +109,9 @@
           break;
         case 'event3':
         pos = [
-            {x: 325, y: 275, label: "The Federal Reserve's December 13, 2023, meeting concluded with the decision to hold interest rates steady at 5.25%–5.50%. This announcement, coupled with forward guidance on future monetary policy, caused the market to rise.", id:1},
-            {x: 400, y: 250, label: "On January 4th, 2024 a U.S. ADP Job report realease which boosted market sentiment and caused the market to rise.", id:2},
-            {x: 600, y: 175, label: "The Federal Reserve signaled a pause or a potential reduction in interest rates during their May 2024 meeting which caused the market to rise.", id:3}
+            {x: 650, y: 275, label: "The Federal Reserve's December 13, 2023, meeting concluded with the decision to hold interest rates steady at 5.25%–5.50%. This announcement, coupled with forward guidance on future monetary policy, caused the market to rise.", id:1},
+            {x: 800, y: 250, label: "On January 4th, 2024 a U.S. ADP Job report realease which boosted market sentiment and caused the market to rise.", id:2},
+            {x: 1200, y: 175, label: "The Federal Reserve signaled a pause or a potential reduction in interest rates during their May 2024 meeting which caused the market to rise.", id:3}
         ];
           filteredData = data;
           break;
