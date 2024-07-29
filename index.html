@@ -116,15 +116,15 @@
         .attr('d', line);
 
       path.exit().remove();
-      /*
-      const data = [
+    
+      const pos = [
             {x: 100, y: 100, label: "Point A"},
             {x: 200, y: 200, label: "Point B"},
             {x: 300, y: 300, label: "Point C"}
         ];
 
         const circles = svg.selectAll("circle")
-            .data(data)
+            .data(pos)
             .enter()
             .append("circle")
             .attr("cx", d => d.x)
@@ -152,7 +152,6 @@
                 d3.selectAll("circle").style("fill", "blue"); // Reset circle color
             }
         });
-        */
     }
   </script>
 </body>
