@@ -106,7 +106,7 @@
           break;
         case 'event3':
         pos = [
-            {x: 300, y: 300, label: "The Federal Reserve's December 13, 2023, meeting concluded with the decision to hold interest rates steady at 5.25%–5.50%. This announcement, coupled with forward guidance on future monetary policy, caused the market to rise."},
+            {x: 325, y: 275, label: "The Federal Reserve's December 13, 2023, meeting concluded with the decision to hold interest rates steady at 5.25%–5.50%. This announcement, coupled with forward guidance on future monetary policy, caused the market to rise."},
             {x: 400, y: 250, label: "On January 4th, 2024 a U.S. ADP Job report realease which boosted market sentiment and caused the market to rise."},
             {x: 600, y: 175, label: "The Federal Reserve signaled a pause or a potential reduction in interest rates during their May 2024 meeting which caused the market to rise."}
         ];
@@ -161,7 +161,7 @@
         .attr("text-anchor", "middle")
         .text(d => d.label)
         .attr("class", "annotation")
-        .attr("id", d => `${d.id}-annotation`);
+        .attr("id", d.id);
 
       annotations.exit().remove();
 
@@ -173,8 +173,8 @@
                 d3.select(this).style("fill","red");
                 
                 // Show the clicked circle's annotation
-                d3.select(`#${d.id}-annotation`).style("display", "block");
-                console.log(d3.select(`#${d.id}-annotation`));
+                d3.select(d.id).style("display", "block");
+                console.log(d3.select(d.id));
             } else {
                 d3.selectAll(".annotation").style("display", "none");
                 d3.selectAll("circle").style("fill", "blue");
