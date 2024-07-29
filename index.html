@@ -16,6 +16,11 @@
       margin: 5px;
       padding: 10px;
     }
+    .line {
+      fill: none;
+      stroke: steelblue;
+      stroke-width: 2px;
+    }
   </style>
 </head>
 <body>
@@ -100,10 +105,7 @@
       path.enter().append('path')
         .attr('class', 'line')
         .merge(path)
-        .attr('d', line)
-        .attr('fill', 'none')
-        .attr('stroke', 'steelblue')
-        .attr('stroke-width', 2);
+        .attr('d', line);
 
       path.exit().remove();
     }
