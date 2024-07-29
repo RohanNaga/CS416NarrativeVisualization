@@ -117,6 +117,41 @@
 
       path.exit().remove();
       
+      const data = [
+            {x: 100, y: 100, label: "Point A"},
+            {x: 200, y: 200, label: "Point B"},
+            {x: 300, y: 300, label: "Point C"}
+        ];
+
+        const circles = svg.selectAll("circle")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("cx", d => d.x)
+            .attr("cy", d => d.y)
+            .attr("r", 5)
+            .style("fill", "blue");
+            // Show annotation on circle click
+        circles.on("click", function(event, d) {
+            // Hide all annotations
+            d3.selectAll(".annotation").style("display", "none");
+
+            // Show the clicked circle's annotation
+            d3.select(this)
+              .raise() // Bring the circle to the front
+              .style("fill", "red"); // Optional: change the circle's color on click
+
+            d3.select(`text:nth-child(${d3.select(this).datum().index})`)
+              .style("display", "block");
+        });
+
+        // Hide annotations when clicking outside
+        svg.on("click", function(event) {
+            if (!d3.select(event.target).classed("circle")) {
+                d3.selectAll(".annotation").style("display", "none");
+                d3.selectAll("circle").style("fill", "blue"); // Reset circle color
+            }
+        });
     }
   </script>
 </body>
