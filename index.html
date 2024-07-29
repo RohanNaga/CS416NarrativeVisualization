@@ -130,7 +130,8 @@
             .attr("cx", d => d.x)
             .attr("cy", d => d.y)
             .attr("r", 5)
-            .style("fill", "blue");
+            .style("fill", "blue")
+            .style("display", "id");
             // Show annotation on circle click
         circles.on("click", function(event, d) {
             // Hide all annotations
