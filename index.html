@@ -104,7 +104,7 @@
             {x: 800, y: 250, label: "On January 4th, 2024 a U.S. ADP Job report realease which boosted market sentiment and caused the market to rise.", id:2},
         ];
           filteredData1 = data.filter(d => d.date <= new Date(lastYear, 12, 31));
-          filteredData2 = data.filter(d => d.date <= new Date(now.getFullYear(), 3, 18));
+          filteredData2 = data.filter(d => d.date <= new Date(now.getFullYear(), 1, 18));
           filteredData = filteredData2.concat(filteredData1);
           break;
         case 'event3':
