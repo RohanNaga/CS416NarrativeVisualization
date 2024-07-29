@@ -91,6 +91,13 @@
       g.select('.axis--x').call(xAxis);
       g.select('.axis--y').call(yAxis);
 
+
+      var line = d3.line()
+                    .x(function(d){return x(d.Date);})
+                    .y(function(d){return x(d.Open);});
+        
+      g.append('path').attr('d',line(data))
+      /*
       const path = g.append('line')
         .data([filteredData]);
 
@@ -103,6 +110,7 @@
         .attr('stroke-width', 2);
 
       path.exit().remove();
+      */
     }
   </script>
 </body>
