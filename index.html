@@ -57,10 +57,12 @@
 
     d3.csv('https://raw.githubusercontent.com/RohanNaga/CS416NarrativeVisualization/fbf790863f24977cc3cbb6b6fbdc61f26a888f1b/Download%20Data%20-%20INDEX_US_S%26P%20US_SPX%20(1).csv').then(csvData => {
       csvData.forEach(d => {
-        d.date = new Date(d.Date);  // Adjust date parsing as necessary
+        d.date = d3.timeParse('%m/%d/%Y')(d.Date);
         d.open = +d.Open;
         data.push(d);
       });
+
+      console.log(data);  // Debugging line to check parsed data
 
       // Initial load
       updateChart('event1');
@@ -81,6 +83,8 @@
         default:
           filteredData = data;
       }
+
+      console.log(filteredData);  // Debugging line to check filtered data
 
       x.domain(d3.extent(filteredData, d => d.date));
       y.domain([0, d3.max(filteredData, d => d.open)]);
