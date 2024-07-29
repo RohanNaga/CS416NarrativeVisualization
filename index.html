@@ -55,7 +55,7 @@
 
     let data = [];
 
-    d3.csv('https://github.com/RohanNaga/CS416NarrativeVisualization/blob/f43761528cd539f0e55e3d0dacbf7e359d289eb9/Download%20Data%20-%20INDEX_US_S%26P%20US_SPX%20(1).csv').then(csvData => {
+    d3.csv('https://raw.githubusercontent.com/RohanNaga/CS416NarrativeVisualization/0b5ea0eb858ab5bf3303535a3b93b63905467c33/Download%20Data%20-%20INDEX_US_S%26P%20US_SPX%20(1).csv').then(csvData => {
       csvData.forEach(d => {
         const parsedDate = d3.timeParse('%m/%d/%Y')(d.Date);
         const parsedOpen = +d.Open;
