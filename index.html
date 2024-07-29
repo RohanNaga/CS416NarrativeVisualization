@@ -88,7 +88,7 @@
 
       x.domain(d3.extent(filteredData, d => d.date));
       y.domain([0, d3.max(filteredData, d => d.open)]);
-      console.log(y.domain([0, d3.max(filteredData, d => d.open)]));
+      console.log(d3.max(filteredData, d => d.open));
       g.select('.axis--x').call(xAxis);
       g.select('.axis--y').call(yAxis);
 
