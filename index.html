@@ -37,9 +37,9 @@
 
   <div class="buttons">
     <p>Select the time period you want to view below:</p>
-    <button onclick="updateChart('event1');updateChart('event1')"">Period 1</button>
-    <button onclick="updateChart('event2');updateChart('event2')">Period 2</button>
-    <button onclick="updateChart('event3');updateChart('event3')">Period 3</button>
+    <button onclick="updateChart('event1');updateChart('event1');clearannotations()">Period 1</button>
+    <button onclick="updateChart('event2');updateChart('event2');clearannotations()">Period 2</button>
+    <button onclick="updateChart('event3');updateChart('event3');clearannotations()">Period 3</button>
   </div>
 
   <p>Click the blue dots to get more infomation on the events</p>
@@ -106,7 +106,7 @@
             {x: 650, y: 275, label: "The Federal Reserve's December 13, 2023, meeting concluded with the decision to hold interest rates steady at 5.25%–5.50%. This announcement, coupled with forward guidance on future monetary policy, caused the market to rise.", id:1},
             {x: 800, y: 250, label: "On January 4th, 2024 a U.S. ADP Job report realease which boosted market sentiment and caused the market to rise.", id:2},
         ];
-          filteredData = data.filter(d => d.date <= new Date(now.getFullYear(), 2, 18));
+          filteredData = data.filter(d => d.date <= new Date(now.getFullYear(), 3, 18));
           break;
         case 'event3':
         pos = [
@@ -187,6 +187,10 @@
                 d3.selectAll("circle").style("fill", "blue");
             }
         });
+    }
+
+    function clearannotations() {
+        d3.selectAll(".annotation").style("display", "none");
     }
   </script>
 </body>
