@@ -183,14 +183,11 @@
                 
                 // Show the clicked circle's annotation
                 if (this.id == 1) {
-                    d3.selectAll(".annotation").selectAll(1).style("display", "block");
-                    console.log(d3.selectAll(".annotation").selectAll(1));
+                    d3.select(".annotation").style("display", "block");
                 } else if (this.id == 2) {
-                    d3.selectAll(".2").selectAll(".annotation").style("display", "block");
-                    console.log(d3.selectAll(".annotation"));
+                    d3.selectAll(".annotation")[1].style("display", "block");
                 } else {
-                    d3.selectAll(".3").selectAll(".annotation").style("display", "block");
-                    console.log(d3.selectAll(".annotation"));
+                    d3.selectAll(".annotation")[2].style("display", "block");
                 }
             } else {
                 d3.selectAll(".annotation").style("display", "none");
