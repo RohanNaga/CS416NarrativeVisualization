@@ -163,7 +163,7 @@
       annotations.enter().append("text")
         .merge(annotations)
         .attr("x", d => d.x)
-        .attr("y", d => d.y - 10)
+        .attr("y", d => d.y + 10)
         .attr("text-anchor", "middle")
         .text(d => d.label)
         .attr("class", "annotation")
