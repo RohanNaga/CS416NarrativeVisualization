@@ -166,7 +166,7 @@
         .attr("y", d => d.y - 10)
         .attr("text-anchor", "middle")
         .text(d => d.label)
-        .attr("class", d=> d.id)
+        .attr("class", "annotation")
         .attr("id", d=> d.id)
         .attr("width", "200px") /* Set the desired width */
         .attr("word-wrap", "break-word")
@@ -183,7 +183,7 @@
                 
                 // Show the clicked circle's annotation
                 if (this.id == 1) {
-                    d3.select("1").style("display", "block");
+                    d3.selectAll(".1").selectAll(".annotation").style("display", "block");
                     console.log(this.id);
                     console.log(d3.selectAll("#1"));
                 } else if (this.id == 2) {
